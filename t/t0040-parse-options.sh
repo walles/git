@@ -93,6 +93,7 @@ test_expect_success 'OPT_BOOL() no negation #1' 'check_unknown_i18n --fear'
 test_expect_success 'OPT_BOOL() no negation #2' 'check_unknown_i18n --no-no-fear'
 
 test_expect_success 'OPT_BOOL() positivation' 'check boolean: 0 -D --doubt'
+test_expect_success 'OPT_BOOL() no double negation' 'check_unknown_i18n --no-no-doubt'
 
 test_expect_success 'OPT_INT() negative' 'check integer: -2345 -i -2345'
 
@@ -389,10 +390,6 @@ test_expect_success '--no-verbose sets verbose to 0' '
 
 test_expect_success '--no-verbose resets multiple verbose to 0' '
 	test-parse-options --expect="verbose: 0" -v -v -v --no-verbose
-'
-
-test_expect_success 'double negation not accepted' '
-	test_must_fail test-parse-options --expect="boolean: 0" --no-no-doubt
 '
 
 test_done
